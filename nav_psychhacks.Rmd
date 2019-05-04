@@ -12,14 +12,16 @@ library(readr)
 library(tidyverse)
 library(data.table)
 library(reshape)
+
 ```
 
 ```{r set wd}
-setwd("~/Desktop/Github/behavioural-teamsnax")
+
+#setwd("/Users/anishakhosla/Desktop/GitHub/MAthesis_analyses")
 ```
 
 ```{r}
-df <- read_csv("CleanedParticipantData.csv")
+df <- read_csv("/Users/anishakhosla/Desktop/CleanedParticipantData.csv")
 ```
 
 
