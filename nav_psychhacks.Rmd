@@ -15,11 +15,15 @@ library(reshape)
 ```
 
 ```{r set wd}
-setwd("/Users/Stephanie/Desktop")
+#setwd("/Users/Stephanie/Desktop")
+setwd("/Users/anishakhosla/Desktop/GitHub/behavioural-teamsnax")
+
 ```
 
 ```{r}
-df <- read_csv("/Users/Stephanie/Desktop/CleanedParticipantData.csv")
+#df <- read_csv("/Users/Stephanie/Desktop/CleanedParticipantData.csv")
+df <- read_csv("/Users/anishakhosla/Desktop/CleanedParticipantData.csv")
+
 View(df)
 ```
 
