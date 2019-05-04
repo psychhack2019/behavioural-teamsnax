@@ -12,6 +12,7 @@ library(readr)
 library(tidyverse)
 library(data.table)
 library(reshape)
+library(emmeans)
 ```
 
 ```{r set wd}
@@ -22,20 +23,43 @@ setwd("/Users/Stephanie/Desktop")
 ```
 
 ```{r}
-df_clean <- read_csv("/Users/anishakhosla/Desktop/GitHub/behavioural-teamsnax/df_clean.csv")
+#df_clean <- read_csv("/Users/anishakhosla/Desktop/GitHub/behavioural-teamsnax/df_clean.csv")
 
-#df <- read_csv("/Users/Stephanie/Desktop/CleanedParticipantData.csv")
+df_clean <- read_csv("/Users/Stephanie/Desktop/GitHub/behavioural-teamsnax/df_clean.csv")
 
+df_clean$X1 <- NULL
+df_clean$X1_1 <- NULL
 
-View(df)
+View(df_clean)
 ```
 
+```{r}
+miss1 = sum(is.na(df_clean$RewardType))
+miss2 = sum(is.na(df_clean$TrialTime))
+miss3 = sum(is.na(df_clean$Delay))
+```
+
+```{r linear regression}
+
+library(lme4) #for lmer
+library(lmerTest)
+
+mdl1 <- lmer(TrialTime ~ Delay*RewardType + (1|Participant), data = df_clean)
+
+#summary(mdl1)
+anova(mdl1)
+```
 
 ```{r}
-mdl <- lm (TrialTime ~ Delay*Environment + (1|subject), data = df_clean)
-  
-summary(mdl)
-anova(mdl1)
+mdl2 <- lm(TrialTime ~ Delay*RewardType + (1|Participant), data = df_clean)
 
+#summary(mdl2)
+anova(mdl2)
+```
+
+```{r post hoc}
+emmeans(mdl1, list(pairwise ~ Delay), adjust = "bonf")
+emmeans(mdl1, list(pairwise ~ RewardType), adjust = "bonf")
+emmeans(mdl1, list(pairwise ~ Delay*RewardType), adjust = "bonf")
 ```
 
