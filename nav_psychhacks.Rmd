@@ -12,16 +12,24 @@ library(readr)
 library(tidyverse)
 library(data.table)
 library(reshape)
-
 ```
 
 ```{r set wd}
-
-#setwd("/Users/anishakhosla/Desktop/GitHub/MAthesis_analyses")
+setwd("/Users/Stephanie/Desktop")
 ```
 
 ```{r}
-df <- read_csv("/Users/anishakhosla/Desktop/CleanedParticipantData.csv")
+df <- read_csv("/Users/Stephanie/Desktop/CleanedParticipantData.csv")
+View(df)
+```
+
+
+```{r remove col}
+df$X <- NULL
+df$Y <- NULL
+df$Rotation <- NULL
+df$Movement <- NULL
+```
 ```
 
 
