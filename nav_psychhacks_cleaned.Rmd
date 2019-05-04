@@ -1,0 +1,41 @@
+---
+title: "nav_psychhacks"
+output: html_document
+---
+
+```{r setup1}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load packages}
+library(readr)
+library(tidyverse)
+library(data.table)
+library(reshape)
+```
+
+```{r set wd}
+setwd("/Users/Stephanie/Desktop")
+
+#setwd("/Users/anishakhosla/Desktop/GitHub/behavioural-teamsnax")
+
+```
+
+```{r}
+df_clean <- read_csv("/Users/anishakhosla/Desktop/GitHub/behavioural-teamsnax/df_clean.csv")
+
+#df <- read_csv("/Users/Stephanie/Desktop/CleanedParticipantData.csv")
+
+
+View(df)
+```
+
+
+```{r}
+mdl <- lm (TrialTime ~ Delay*Environment + (1|subject), data = df_clean)
+  
+summary(mdl)
+anova(mdl1)
+
+```
+
