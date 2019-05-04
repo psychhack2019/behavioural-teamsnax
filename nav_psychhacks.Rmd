@@ -15,18 +15,18 @@ library(reshape)
 ```
 
 ```{r set wd}
-#setwd("/Users/Stephanie/Desktop")
-setwd("/Users/anishakhosla/Desktop/GitHub/behavioural-teamsnax")
+setwd("/Users/Stephanie/Desktop")
+
+#setwd("/Users/anishakhosla/Desktop/GitHub/behavioural-teamsnax")
 
 ```
 
 ```{r}
-#df <- read_csv("/Users/Stephanie/Desktop/CleanedParticipantData.csv")
-df <- read_csv("/Users/anishakhosla/Desktop/CleanedParticipantData.csv")
+df <- read_csv("/Users/Stephanie/Desktop/CleanedParticipantData.csv")
+#df <- read_csv("/Users/anishakhosla/Desktop/CleanedParticipantData.csv")
 
 View(df)
 ```
-
 
 ```{r remove col}
 df$X <- NULL
@@ -34,6 +34,15 @@ df$Y <- NULL
 df$Rotation <- NULL
 df$Movement <- NULL
 ```
+
+Filtering out trials in which no reward was found
+```{r}
+df_clean <- df %>% 
+  filter(RewardFound==1, Session=="Train")
 ```
 
+Write new csv
+```{r}
+write.csv(df_clean, file = "df_clean.csv")
+```
 
