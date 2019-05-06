@@ -8,6 +8,11 @@ setwd("/Users/anishakhosla/Desktop/GitHub/behavioural-teamsnax")
 
 df_clean <- read_csv("df_clean.csv")
 
+df_clean <- df_clean %>% 
+  filter(RewardType!='NoReward')
+
+
+
 mdl <- lm (TrialTime ~ Delay*RewardType + (1|Participant), data = df_clean)
 
 summary(mdl)
